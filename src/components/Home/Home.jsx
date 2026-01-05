@@ -1,20 +1,16 @@
 import "./Home.css";
+import LocationSearch from "../Location/LocationSearch";
 
 function Home() {
   return (
     <div className="home">
       <h1>Service Finder</h1>
-      <p>
-        Find nearby mechanics, hospitals, medical shops, and emergency services
-        quickly and easily.
-      </p>
+      <p>Find services by selecting your city or village</p>
 
-      <div className="home-buttons">
-        <button className="primary-btn">Find Services</button>
-        <button className="secondary-btn">Emergency Help</button>
-      </div>
+      <LocationSearch />
     </div>
   );
 }
 
 export default Home;
+

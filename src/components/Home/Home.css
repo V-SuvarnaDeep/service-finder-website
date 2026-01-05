@@ -1,4 +1,3 @@
-/* Home page main container */
 .home {
   min-height: 100vh;
   padding: 40px 20px;
@@ -6,57 +5,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
-/* Main heading */
 .home h1 {
-  font-size: 40px;
+  font-size: 36px;
   color: #2c3e50;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-/* Description text */
 .home p {
   font-size: 18px;
   color: #555;
-  max-width: 600px;
   margin-bottom: 30px;
-}
-
-/* Buttons container */
-.home-buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Common button style */
-.home button {
-  padding: 12px 25px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Primary button */
-.home .primary-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-/* Secondary button */
-.home .secondary-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-/* Hover effect */
-.home button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
 }
