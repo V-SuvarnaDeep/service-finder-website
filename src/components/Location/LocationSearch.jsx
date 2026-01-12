@@ -1,31 +1,34 @@
 import { useState } from "react";
-import MapView from "../Maps/MapView";
 import "./LocationSearch.css";
 
-function LocationSearch() {
+function LocationSearch({ setCoords }) {
   const [place, setPlace] = useState("");
-  const [coords, setCoords] = useState(null);
   const [error, setError] = useState("");
 
   const searchPlace = async () => {
-    if (!place) {
-      setError("Please enter a city or village name");
+    if (place.trim().length < 3) {
+      setError("Please enter a valid city or village name");
       return;
     }
 
     try {
       const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=AIzaSyCsJVleLg7YwP7cBtpxTEhZI01KyRVItgk`
+        `https://photon.komoot.io/api/?q=${encodeURIComponent(place)}&limit=1`
       );
+
       const data = await res.json();
 
-      if (data.status === "OK") {
-        setCoords(data.results[0].geometry.location);
-        setError("");
-      } else {
+      if (!data.features || data.features.length === 0) {
         setError("Location not found");
+        return;
       }
-    } catch {
+
+      const [lng, lat] = data.features[0].geometry.coordinates;
+
+      setCoords({ lat, lng });
+      setError("");
+    } catch (err) {
+      console.error(err);
       setError("Error fetching location");
     }
   };
@@ -43,8 +46,6 @@ function LocationSearch() {
       </div>
 
       {error && <p className="error">{error}</p>}
-
-      {coords && <MapView location={coords} />}
     </div>
   );
 }
