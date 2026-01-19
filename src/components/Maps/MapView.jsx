@@ -1,17 +1,24 @@
-function MapView({ coords }) {
-  if (!coords) return <p>Search a location to view map</p>;
+import "./MapView.css";
+
+function MapView({ place }) {
+  if (!place) return null;
+
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
+    place
+  )}&output=embed`;
 
   return (
-    <iframe
-      title="map"
-      width="100%"
-      height="400"
-      src={`https://www.openstreetmap.org/export/embed.html?bbox=${
-        coords.lng - 0.01
-      }%2C${coords.lat - 0.01}%2C${coords.lng + 0.01}%2C${
-        coords.lat + 0.01
-      }&layer=mapnik&marker=${coords.lat}%2C${coords.lng}`}
-    />
+    <div className="map-wrapper">
+      <iframe
+        title="map"
+        src={mapUrl}
+        width="100%"
+        height="400"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+      ></iframe>
+    </div>
   );
 }
 

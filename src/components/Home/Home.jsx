@@ -4,19 +4,19 @@ import LocationSearch from "../Location/LocationSearch";
 import MapView from "../Maps/MapView";
 
 function Home() {
-  const [coords, setCoords] = useState(null);
+  const [place, setPlace] = useState("");
 
   return (
     <div className="home">
       <h1>Service Finder</h1>
-      <p>Find services by selecting your city or village</p>
+      <p>Select your city or village to view location on map</p>
 
-      <LocationSearch setCoords={setCoords} />
-
-      <MapView coords={coords} />
+      <LocationSearch setPlace={setPlace} />
+      <MapView place={place} />
     </div>
   );
 }
 
 export default Home;
+
 
