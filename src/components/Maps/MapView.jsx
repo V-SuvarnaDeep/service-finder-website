@@ -3,9 +3,7 @@ import "./MapView.css";
 function MapView({ place }) {
   if (!place) return null;
 
-  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    place
-  )}&output=embed`;
+  const mapUrl = `https://maps.google.com/maps?q=${place}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <div className="map-wrapper">
