@@ -1,32 +1,59 @@
-import { useState } from "react";
-import "./Login.css";
+import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login({ goRegister, goUser }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("✅ Login successful");
+      navigate("/home"); // change route if needed
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
-    <div className="login-container">
+    <div style={{ padding: "20px" }}>
       <h2>Login</h2>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <form onSubmit={handleLogin}>
+        <div>
+          <input
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <div>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-      <button onClick={goUser}>Login</button>
+        <button type="submit">Login</button>
+      </form>
 
-      <p className="switch-text">
-        Don’t have an account? <span onClick={goRegister}>Register</span>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <p>
+        Don’t have an account? <Link to="/register">Register</Link>
       </p>
     </div>
   );

@@ -1,30 +1,26 @@
-import { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Authorize/Login";
 import Register from "./components/Authorize/Register";
-import Home from "./components/Home/Home";
-import UserHome from "./components/User/UserHome";
+// import Home from "./components/Home/Home"; // optional
 
 function App() {
-  const [page, setPage] = useState("login");
+  return (
+    <Router>
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<Login />} />
 
-  if (page === "login") {
-    return <Login goRegister={() => setPage("register")} goUser={() => setPage("user")} />;
-  }
+        {/* Auth routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-  if (page === "register") {
-    return <Register goLogin={() => setPage("login")} />;
-  }
-
-  if (page === "user") {
-    return <UserHome goHome={() => setPage("home")} />;
-  }
-
-  if (page === "home") {
-    return <Home />;
-  }
-
-  return null;
+        {/* After login (optional) */}
+        {/* <Route path="/home" element={<Home />} /> */}
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
