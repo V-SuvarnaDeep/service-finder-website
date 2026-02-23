@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Authorize/Login";
-import Register from "./components/Authorize/Register";
-// import Home from "./components/Home/Home"; // optional
+import RegisterChoice from"./components/Authorize/RegisterChoice";
+import RegisterUser from "./components/Authorize/RegisterUser";
+import RegisterProvider from "./components/Authorize/RegisterProvider";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
 
         {/* Auth routes */}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<RegisterChoice />} />
+        <Route path="/register-user" element={<RegisterUser />} />
+        <Route path="/register-provider" element={<RegisterProvider />} />
 
         {/* After login (optional) */}
         {/* <Route path="/home" element={<Home />} /> */}
