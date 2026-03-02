@@ -1,0 +1,29 @@
+.location-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.search-box input {
+  width: 65%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}

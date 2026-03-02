@@ -1,0 +1,73 @@
+.signup-container {
+  max-width: 360px;
+  margin: 100px auto;
+  padding: 25px;
+  background: #8995e5;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(23, 70, 132, 0.15);
+  text-align: center;
+
+  /* Added interactivity */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hover lift effect */
+.signup-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(23, 70, 132, 0.25);
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input interactivity */
+.signup-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.signup-container input:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 0 2px rgba(78, 115, 223, 0.2);
+}
+
+/* Button interactivity */
+.signup-container button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4e73df;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.signup-container button:hover {
+  transform: translateY(-2px);
+  background-color: #2e59d9;
+}
+
+.signup-container button:active {
+  transform: scale(0.98);
+}
+
+.signup-container button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
