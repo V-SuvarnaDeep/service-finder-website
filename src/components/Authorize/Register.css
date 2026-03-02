@@ -2,6 +2,7 @@
   max-width: 360px;
   margin: 100px auto;
   padding: 25px;
+<<<<<<< HEAD
   background: #8995e5;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(23, 70, 132, 0.15);
@@ -71,3 +72,10 @@
   background-color: #999;
   cursor: not-allowed;
 }
+=======
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-align: center;
+}
+>>>>>>> 09739a225d93e6b022d4a839445f60cb27ec39b7
