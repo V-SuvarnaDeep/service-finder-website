@@ -57,11 +57,7 @@ const styles = {
     padding: "20px",
     width: "250px",
     borderRadius: "10px",
-<<<<<<< HEAD
-    boxShadow: "0 2px 10px rgba(12, 46, 241, 0.1)",
-=======
     boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
->>>>>>> 09739a225d93e6b022d4a839445f60cb27ec39b7
     cursor: "pointer",
     transition: "0.3s",
     textAlign: "center"
