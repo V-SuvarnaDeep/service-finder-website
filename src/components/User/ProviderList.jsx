@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
-import MapView from "../Maps/MapView";
+import IframeMap from "../Maps/IframeMap";
 
 function ProviderList() {
 
@@ -117,7 +117,7 @@ function ProviderList() {
 
           <h3>Provider Location</h3>
 
-          <MapView place={selectedPlace} />
+          <IframeMap place={selectedPlace} />
 
         </div>
 
