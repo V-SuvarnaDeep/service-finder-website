@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 import IframeMap from "../Maps/IframeMap";
 
 function ProviderList() {
 
   const { serviceType } = useParams();
+  const navigate = useNavigate();
 
   const [providers, setProviders] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -86,18 +88,19 @@ function ProviderList() {
                 >
                   Contact
                 </button>
-
-                <button
-                  style={mapBtn}
-                  onClick={() =>
-                    setSelectedPlace({
-                      lat: provider.Latitude,
-                      lng: provider.Longitude
-                    })
-                  }
-                >
-                  Find on Map
-                </button>
+<button
+  style={mapBtn}
+  onClick={() =>
+    navigate("/map", {
+      state: {
+        lat: provider.Latitude,
+        lng: provider.Longitude
+      }
+    })
+  }
+>
+  Find on Map
+</button>
 
               </div>
 

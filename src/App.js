@@ -7,6 +7,7 @@ import RegisterUser from "./components/Authorize/RegisterUser";
 import RegisterProvider from "./components/Authorize/RegisterProvider";
 import UserHome from "./components/User/UserHome";
 import ProviderList from "./components/User/ProviderList";
+import MapPage from "./components/Maps/MapPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/userhome" element={<UserHome />} />
         <Route path="/home" element={<UserHome />} />
         <Route path="/providers/:serviceType" element={<ProviderList />} />
+        <Route path="/map" element={<MapPage />} />
 
         {/* After login (optional) */}
         {/* <Route path="/home" element={<Home />} /> */}

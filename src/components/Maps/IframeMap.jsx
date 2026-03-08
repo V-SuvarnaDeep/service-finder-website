@@ -1,17 +1,23 @@
 import React from "react";
 
-function MapView({ place }) {
+function IframeMap({ place }) {
+
+  if (!place) return null;
+
+  const mapSrc = `https://www.google.com/maps?q=${place.lat},${place.lng}&output=embed`;
 
   return (
-    <iframe
-      width="100%"
-      height="500"
-      src={`https://maps.google.com/maps?q=${place.lat},${place.lng}&z=15&output=embed`}
-      title="map"
-      style={{ border: 0 }}
-    ></iframe>
+    <div style={{ marginTop: "30px" }}>
+      <iframe
+        width="100%"
+        height="450"
+        src={mapSrc}
+        title="Google Map"
+        style={{ border: 0, borderRadius: "10px" }}
+        loading="lazy"
+      ></iframe>
+    </div>
   );
-
 }
 
-export default MapView;
+export default IframeMap;
