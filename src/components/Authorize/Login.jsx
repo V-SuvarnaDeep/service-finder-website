@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,13 +15,36 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/userhome");
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userEmail = userCredential.user.email;
+
+      // Check if provider exists in providers collection
+      const q = query(
+        collection(db, "providers"),
+        where("email", "==", userEmail)
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+
+        // Provider login
+        navigate("/provider-dashboard");
+
+      } else {
+
+        // Normal user login
+        navigate("/userhome");
+
+      }
+
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -28,12 +53,17 @@ function Login() {
   };
 
   return (
+
     <div style={styles.container}>
+
       <div style={styles.card}>
+
         <h2 style={styles.title}>Welcome...</h2>
 
         <form onSubmit={handleLogin} style={styles.form}>
+
           <div style={styles.inputGroup}>
+
             <input
               type="email"
               placeholder="Enter email"
@@ -42,9 +72,11 @@ function Login() {
               required
               style={styles.input}
             />
+
           </div>
 
           <div style={{ ...styles.inputGroup, position: "relative" }}>
+
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter password"
@@ -60,6 +92,7 @@ function Login() {
             >
               {showPassword ? "Hide" : "Show"}
             </span>
+
           </div>
 
           {error && <p style={styles.error}>{error}</p>}
@@ -74,6 +107,7 @@ function Login() {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
+
         </form>
 
         <p style={styles.linkText}>
@@ -82,16 +116,21 @@ function Login() {
             Register
           </Link>
         </p>
+
       </div>
+
     </div>
   );
+
 }
 
 export default Login;
 
+
 /* ================= STYLES ================= */
 
 const styles = {
+
   container: {
     height: "100vh",
     display: "flex",
@@ -99,6 +138,7 @@ const styles = {
     alignItems: "center",
     background: "linear-gradient(135deg, #4e73df, #1cc88a)"
   },
+
   card: {
     background: "#ffffff",
     padding: "40px",
@@ -106,18 +146,22 @@ const styles = {
     width: "350px",
     boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
   },
+
   title: {
     textAlign: "center",
     marginBottom: "25px"
   },
+
   form: {
     display: "flex",
     flexDirection: "column",
     gap: "15px"
   },
+
   inputGroup: {
     width: "100%"
   },
+
   input: {
     width: "100%",
     padding: "12px",
@@ -126,6 +170,7 @@ const styles = {
     fontSize: "14px",
     outline: "none"
   },
+
   toggle: {
     position: "absolute",
     right: "12px",
@@ -134,6 +179,7 @@ const styles = {
     color: "#4e73df",
     cursor: "pointer"
   },
+
   button: {
     padding: "12px",
     borderRadius: "8px",
@@ -144,18 +190,22 @@ const styles = {
     fontWeight: "bold",
     cursor: "pointer"
   },
+
   error: {
     color: "red",
     fontSize: "13px"
   },
+
   linkText: {
     marginTop: "20px",
     textAlign: "center",
     fontSize: "14px"
   },
+
   link: {
     color: "#4e73df",
     textDecoration: "none",
     fontWeight: "bold"
   }
+
 };
