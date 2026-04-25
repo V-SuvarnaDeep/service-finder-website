@@ -1,112 +1,88 @@
-/* Canva-style soft gradient background */
-.home-container {
+/* ===== GLOBAL ===== */
+.home {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ===== HERO ===== */
+.hero {
+  width: 100%;
+  height: 60vh; /* slightly better than 70vh */
+  background-size: cover;      
+  background-position: right center; /* 🔥 keeps crane visible */
+  background-repeat: no-repeat;
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #a18cd1 0%,
-    #fbc2eb 50%,
-    #8ec5fc 100%
-  );
+};
+
+
+.overlay {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* adjust if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  color: white;
+}
+
+
+/* ===== SERVICES ===== */
+.services-section {
+  padding: 40px 80px;
+  background: #f8fafc;
+}
+
+.services-section h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+/* GRID */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+//* CARD */
+.service-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* IMAGE CONTAINER */
+.image-box {
+  width: 100%;
+  height: 140px;
   overflow: hidden;
 }
 
-/* Soft glow circles */
-.home-container::before,
-.home-container::after {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(120px);
-  z-index: 0;
+/* IMAGE */
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.home-container::before {
-  background: rgba(255, 255, 255, 0.4);
-  top: -150px;
-  left: -150px;
-}
-
-.home-container::after {
-  background: rgba(255, 255, 255, 0.3);
-  bottom: -150px;
-  right: -150px;
-}
-
-/* Page content */
-.home-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding-top: 80px;
-  animation: fadeSlide 0.8s ease forwards;
-}
-
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.home-title {
-  font-size: 42px;
-  margin-bottom: 10px;
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.home-subtitle {
-  font-size: 18px;
-  margin-bottom: 60px;
-  color: #f8f8f8;
-}
-
-/* Grid layout */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 35px;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Canva-style glass card */
-.service-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 20px;
-  padding: 45px 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-/* 3D hover effect */
-.service-card:hover {
-  transform: translateY(-12px) scale(1.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
-}
-
-/* Icon style */
-.service-icon {
-  font-size: 50px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.2);
-}
-
+/* TEXT */
 .service-card h3 {
-  font-size: 20px;
+  padding: 15px;
+  font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: #0f172a;
+}
+.icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
